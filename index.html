@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>New Home — Недвижимость Ташкента</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<header class="header" id="header">
+    <div class="container nav">
+
+        <a href="#" class="logo">
+            <span class="logo-icon">
+                <i class="fa-solid fa-house"></i>
+            </span>
+            <span>New<span>Home</span></span>
+        </a>
+
+        <nav class="menu">
+            <a href="#home">Главная</a>
+            <a href="#properties">Недвижимость</a>
+            <a href="#districts">Районы</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#contact">Контакты</a>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="theme-btn" id="themeBtn">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+            <button class="add-btn" onclick="openModal()">
+                <i class="fa-solid fa-plus"></i>
+                Добавить объект
+            </button>
+
+            <button class="burger" id="burger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="hero-bg"></div>
+
+    <div class="container hero-content">
+
+        <div class="hero-text reveal">
+
+            <div class="badge">
+                <i class="fa-solid fa-fire"></i>
+                Более 2 500 объектов в Ташкенте
+            </div>
+
+            <h1>
+                Найдите дом,
+                <span>в котором</span>
+                хочется жить
+            </h1>
+
+            <p>
+                Покупка, аренда и продажа недвижимости
+                в лучших районах Ташкента.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#properties" class="btn primary">
+                    Смотреть объекты
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+                <button class="btn glass" onclick="openModal()">
+                    Связаться с нами
+                </button>
+            </div>
+
+            <div class="statistics">
+
+                <div class="stat">
+                    <strong data-number="2500">0</strong>
+                    <span>Объектов</span>
+                </div>
+
+                <div class="stat">
+                    <strong data-number="1800">0</strong>
+                    <span>Клиентов</span>
+                </div>
+
+                <div class="stat">
+                    <strong data-number="12">0</strong>
+                    <span>Районов</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="scroll-down">
+        <span>Листайте вниз</span>
+        <i class="fa-solid fa-arrow-down"></i>
+    </div>
+
+</section>
+
+
+<section class="search-section">
+
+    <div class="container">
+
+        <div class="search-box">
+
+            <div class="search-item">
+                <label>Тип недвижимости</label>
+
+                <select id="typeFilter">
+                    <option value="all">Все варианты</option>
+                    <option value="apartment">Квартира</option>
+                    <option value="house">Дом</option>
+                    <option value="office">Офис</option>
+                    <option value="commercial">Коммерция</option>
+                </select>
+            </div>
+
+            <div class="search-item">
+                <label>Район</label>
+
+                <select id="districtFilter">
+                    <option value="all">Все районы</option>
+                    <option value="yunusabad">Юнусабад</option>
+                    <option value="mirzo-ulugbek">Мирзо-Улугбек</option>
+                    <option value="chilanzar">Чиланзар</option>
+                    <option value="yakkasaray">Яккасарай</option>
+                    <option value="sergeli">Сергелий</option>
+                </select>
+            </div>
+
+            <div class="search-item">
+                <label>Цена</label>
+
+                <select id="priceFilter">
+                    <option value="all">Любая цена</option>
+                    <option value="low">До $100 000</option>
+                    <option value="medium">$100 000 — $200 000</option>
+                    <option value="high">От $200 000</option>
+                </select>
+            </div>
+
+            <button class="search-btn" onclick="filterProperties()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Найти
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="properties">
+
+    <div class="container">
+
+        <div class="section-heading reveal">
+
+            <div>
+                <span class="section-label">Каталог</span>
+
+                <h2>
+                    Популярные
+                    <span>объекты</span>
+                </h2>
+            </div>
+
+            <button class="view-all" onclick="showAllProperties()">
+                Смотреть все
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+        </div>
+
+
+        <div class="properties-grid" id="propertiesGrid">
+
+            <article
+                class="property-card reveal"
+                data-type="apartment"
+                data-district="yunusabad"
+                data-price="medium"
+            >
+
+                <div class="property-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80"
+                        alt="Квартира"
+                    >
+
+                    <span class="property-status">
+                        <i class="fa-solid fa-star"></i>
+                        Premium
+                    </span>
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(this)"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+
+                    <span class="property-type">
+                        Квартира
+                    </span>
+
+                </div>
+
+                <div class="property-info">
+
+                    <div class="property-price">
+                        $145 000
+                    </div>
+
+                    <h3>Современная квартира в центре</h3>
+
+                    <p class="location">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Юнусабад, Ташкент
+                    </p>
+
+                    <div class="property-details">
+                        <span>
+                            <i class="fa-solid fa-bed"></i>
+                            3 комнаты
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-ruler-combined"></i>
+                            86 м²
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-bath"></i>
+                            2
+                        </span>
+                    </div>
+
+                    <button
+                        class="details-btn"
+                        onclick="openProperty('Современная квартира в центре', '$145 000')"
+                    >
+                        Подробнее
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="property-card reveal"
+                data-type="house"
+                data-district="mirzo-ulugbek"
+                data-price="high"
+            >
+
+                <div class="property-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80"
+                        alt="Дом"
+                    >
+
+                    <span class="property-status hot">
+                        <i class="fa-solid fa-fire"></i>
+                        Горячее
+                    </span>
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(this)"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+
+                    <span class="property-type">
+                        Дом
+                    </span>
+
+                </div>
+
+                <div class="property-info">
+
+                    <div class="property-price">
+                        $280 000
+                    </div>
+
+                    <h3>Роскошный семейный дом</h3>
+
+                    <p class="location">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Мирзо-Улугбек, Ташкент
+                    </p>
+
+                    <div class="property-details">
+
+                        <span>
+                            <i class="fa-solid fa-bed"></i>
+                            5 комнат
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-ruler-combined"></i>
+                            240 м²
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-car"></i>
+                            2 авто
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="details-btn"
+                        onclick="openProperty('Роскошный семейный дом', '$280 000')"
+                    >
+                        Подробнее
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="property-card reveal"
+                data-type="apartment"
+                data-district="chilanzar"
+                data-price="low"
+            >
+
+                <div class="property-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80"
+                        alt="Квартира"
+                    >
+
+                    <span class="property-status">
+                        Новинка
+                    </span>
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(this)"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+
+                    <span class="property-type">
+                        Квартира
+                    </span>
+
+                </div>
+
+                <div class="property-info">
+
+                    <div class="property-price">
+                        $89 000
+                    </div>
+
+                    <h3>Уютная квартира для семьи</h3>
+
+                    <p class="location">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Чиланзар, Ташкент
+                    </p>
+
+                    <div class="property-details">
+
+                        <span>
+                            <i class="fa-solid fa-bed"></i>
+                            2 комнаты
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-ruler-combined"></i>
+                            62 м²
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-bath"></i>
+                            1
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="details-btn"
+                        onclick="openProperty('Уютная квартира для семьи', '$89 000')"
+                    >
+                        Подробнее
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="property-card reveal"
+                data-type="commercial"
+                data-district="yakkasaray"
+                data-price="high"
+            >
+
+                <div class="property-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80"
+                        alt="Офис"
+                    >
+
+                    <span class="property-status">
+                        Бизнес
+                    </span>
+
+                    <button
+                        class="favorite"
+                        onclick="toggleFavorite(this)"
+                    >
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+
+                    <span class="property-type">
+                        Офис
+                    </span>
+
+                </div>
+
+                <div class="property-info">
+
+                    <div class="property-price">
+                        $320 000
+                    </div>
+
+                    <h3>Современный офисный центр</h3>
+
+                    <p class="location">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Яккасарай, Ташкент
+                    </p>
+
+                    <div class="property-details">
+
+                        <span>
+                            <i class="fa-solid fa-building"></i>
+                            2 этажа
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-ruler-combined"></i>
+                            310 м²
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-car"></i>
+                            Паркинг
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="details-btn"
+                        onclick="openProperty('Современный офисный центр', '$320 000')"
+                    >
+                        Подробнее
+                    </button>
+
+                </div>
+
+            </article>
+
+        </div>
+
+        <div class="no-results" id="noResults">
+            <i class="fa-solid fa-house-circle-xmark"></i>
+            <h3>Ничего не найдено</h3>
+            <p>Попробуйте изменить параметры поиска.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="districts section" id="districts">
+
+    <div class="container">
+
+        <div class="section-heading reveal">
+
+            <div>
+                <span class="section-label">Локации</span>
+
+                <h2>
+                    Лучшие районы
+                    <span>Ташкента</span>
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div class="district-grid">
+
+            <div class="district-card big reveal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1000&q=80"
+                    alt="Юнусабад"
+                >
+
+                <div class="district-overlay">
+                    <h3>Юнусабад</h3>
+                    <p>420 объектов</p>
+                </div>
+
+            </div>
+
+
+            <div class="district-card reveal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=800&q=80"
+                    alt="Мирзо Улугбек"
+                >
+
+                <div class="district-overlay">
+                    <h3>Мирзо-Улугбек</h3>
+                    <p>315 объектов</p>
+                </div>
+
+            </div>
+
+
+            <div class="district-card reveal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+                    alt="Яккасарай"
+                >
+
+                <div class="district-overlay">
+                    <h3>Яккасарай</h3>
+                    <p>287 объектов</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="reviews section" id="reviews">
+
+    <div class="container">
+
+        <div class="section-heading centered reveal">
+
+            <span class="section-label">Отзывы</span>
+
+            <h2>
+                Что говорят
+                <span>наши клиенты</span>
+            </h2>
+
+            <p>
+                Более 1 800 человек уже нашли недвижимость
+                вместе с NewHome.
+            </p>
+
+        </div>
+
+
+        <div class="reviews-grid">
+
+            <article class="review-card reveal">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    «Очень удобный сайт. Нашёл квартиру
+                    в Юнусабаде буквально за один день.
+                    Отдельное спасибо менеджеру!»
+                </p>
+
+                <div class="review-user">
+                    <div class="avatar">А</div>
+
+                    <div>
+                        <strong>Алишер</strong>
+                        <span>Покупатель</span>
+                    </div>
+                </div>
+
+            </article>
+
+
+            <article class="review-card reveal">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    «Понравилось большое количество
+                    реальных вариантов. Быстро связались
+                    и помогли подобрать дом.»
+                </p>
+
+                <div class="review-user">
+                    <div class="avatar">М</div>
+
+                    <div>
+                        <strong>Малика</strong>
+                        <span>Покупатель</span>
+                    </div>
+                </div>
+
+            </article>
+
+
+            <article class="review-card reveal">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    «Продал квартиру через NewHome.
+                    Всё прошло быстро и профессионально.
+                    Рекомендую!»
+                </p>
+
+                <div class="review-user">
+                    <div class="avatar">Р</div>
+
+                    <div>
+                        <strong>Рустам</strong>
+                        <span>Продавец</span>
+                    </div>
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="cta-section" id="contact">
+
+    <div class="container">
+
+        <div class="cta reveal">
+
+            <div class="cta-content">
+
+                <span class="section-label">
+                    Поможем найти
+                </span>
+
+                <h2>
+                    Ваш новый дом
+                    <span>начинается здесь</span>
+                </h2>
+
+                <p>
+                    Оставьте заявку и наш специалист
+                    свяжется с вами в ближайшее время.
+                </p>
+
+                <button class="btn primary" onclick="openModal()">
+                    Получить консультацию
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </div>
+
+            <div class="cta-icon">
+                <i class="fa-solid fa-house"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+        <div class="footer-brand">
+
+            <a href="#" class="logo">
+                <span class="logo-icon">
+                    <i class="fa-solid fa-house"></i>
+                </span>
+
+                <span>New<span>Home</span></span>
+            </a>
+
+            <p>
+                Современная платформа недвижимости
+                Ташкента. Найдите место, которое
+                станет вашим домом.
+            </p>
+
+            <div class="socials">
+
+                <a href="#">
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Навигация</h4>
+
+            <a href="#home">Главная</a>
+            <a href="#properties">Недвижимость</a>
+            <a href="#districts">Районы</a>
+            <a href="#reviews">Отзывы</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Помощь</h4>
+
+            <a href="#">Покупка</a>
+            <a href="#">Продажа</a>
+            <a href="#">Аренда</a>
+            <a href="#">FAQ</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Контакты</h4>
+
+            <a href="tel:+99899918228">
+                <i class="fa-solid fa-phone"></i>
+                +998 99 918 22 8
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-location-dot"></i>
+                Ташкент, Узбекистан
+            </a>
+
+            <a href="mailto:info@newhome.uz">
+                <i class="fa-solid fa-envelope"></i>
+                info@newhome.uz
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 NewHome. Все права защищены.
+        </p>
+
+        <p>
+            Сделано с ❤️ в Ташкенте
+        </p>
+
+    </div>
+
+</footer>
+
+
+<div class="modal" id="modal">
+
+    <div class="modal-overlay" onclick="closeModal()"></div>
+
+    <div class="modal-content">
+
+        <button class="modal-close" onclick="closeModal()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-icon">
+            <i class="fa-solid fa-house"></i>
+        </div>
+
+        <h2>Получить консультацию</h2>
+
+        <p>
+            Оставьте свои данные, и мы свяжемся
+            с вами.
+        </p>
+
+        <form id="contactForm">
+
+            <div class="input-group">
+                <i class="fa-solid fa-user"></i>
+
+                <input
+                    type="text"
+                    placeholder="Ваше имя"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-phone"></i>
+
+                <input
+                    type="tel"
+                    placeholder="+998 __ ___ __ __"
+                    required
+                >
+            </div>
+
+            <button class="btn primary full" type="submit">
+                Отправить заявку
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div class="toast" id="toast">
+    <i class="fa-solid fa-check"></i>
+    <span>Заявка успешно отправлена!</span>
+</div>
+
+
+<button class="scroll-top" id="scrollTop">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
